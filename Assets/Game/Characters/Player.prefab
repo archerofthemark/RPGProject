@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8836093479936122238}
   - component: {fileID: 8836093479936122239}
   - component: {fileID: 5897558907892771811}
+  - component: {fileID: 1543470446131283935}
+  - component: {fileID: 1382094277}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -130,6 +132,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1543470446131283935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6852556647709915222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4c2b9d09f001b544b779c44110f6e73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1382094277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6852556647709915222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59058d7ab35a324d8cb805d8265e894, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4513207901049347921
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -185,6 +211,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 13787996, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: bfbe2e8b331e2cc42be1591f949c0e41, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 30cf93deff988e74e88a144bd2127c18, type: 3}
 --- !u!4 &4513207901049716777 stripped
