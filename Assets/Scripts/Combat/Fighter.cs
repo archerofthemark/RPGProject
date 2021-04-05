@@ -6,28 +6,28 @@ namespace RPG.Combat
 {
     public class Fighter : MonoBehaviour, IAction
     {
-        [SerializeField] float weaponRange = 2f;
         [SerializeField] float timeBetweenAttacks = 0.5f;
         [SerializeField] float weaponDamage = 10f;
-        Health target;
-        Mover mover;
+        [SerializeField] float weaponRange = 2f;
+
         ActionScheduler actionScheduler;
         Animator animator;
+        Health target;
+        Mover mover;        
 
-        float timeSinceLastAttack = 0;
+        float timeSinceLastAttack = Mathf.Infinity;
 
         private void Awake()
         {
-            mover = GetComponent<Mover>();
             actionScheduler = GetComponent<ActionScheduler>();
             animator = GetComponent<Animator>();
+            mover = GetComponent<Mover>();
         }
 
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
-            if (target == null) { return; }
-            if(target.IsDead()) { return; }
+            if (target == null || target.IsDead()) { return; }
 
             if (!GetIsInRange())
             {
@@ -69,7 +69,7 @@ namespace RPG.Combat
             target.TakeDamage(weaponDamage);
         }
 
-        public void Attack(CombatTarget combatTarget)
+        public void Attack(GameObject combatTarget)
         {
             actionScheduler.StartAction(this);
             target = combatTarget.GetComponent<Health>();
@@ -86,7 +86,7 @@ namespace RPG.Combat
             animator.ResetTrigger("attack");
         }
 
-        public bool CanAttack(CombatTarget combatTarget)
+        public bool CanAttack(GameObject combatTarget)
         {
             if (combatTarget == null) { return false; }
             Health targetToTest = combatTarget.GetComponent<Health>();
