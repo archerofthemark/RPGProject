@@ -27,11 +27,11 @@ namespace RPG.Combat
         private void Update()
         {
             timeSinceLastAttack += Time.deltaTime;
-            if (target == null || target.IsDead()) { return; }
+            if (target == null || target.IsDead()) { return; } //Add Cancel here to stop attacking straight away on death of enemy
 
             if (!GetIsInRange())
             {
-                mover.MoveTo(target.transform.position);
+                mover.MoveTo(target.transform.position, 1f);
             }
             else
             {
