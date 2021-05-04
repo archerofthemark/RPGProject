@@ -1,3 +1,4 @@
+using RPG.SceneManagement;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -10,6 +11,7 @@ namespace RPG.Core
         Animator animator;
         NavMeshAgent navMeshAgent;
         bool isDead = false;
+        //float playerDeathFadeOutTime = 3.0f;
 
         private void Awake()
         {
@@ -35,6 +37,10 @@ namespace RPG.Core
 
         public void Die()
         {
+            //if(CompareTag("Player")) { 
+            //    Fader fader = FindObjectOfType<Fader>();
+            //    StartCoroutine(fader.FadeOut(playerDeathFadeOutTime)); 
+            //}
             if(isDead) { return; }
             isDead = true;
             animator.SetTrigger("die");
