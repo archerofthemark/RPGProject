@@ -1,3 +1,4 @@
+using RPG.Saving;
 using System;
 using System.Collections;
 using UnityEngine;
@@ -39,14 +40,21 @@ namespace RPG.SceneManagement
             DontDestroyOnLoad(gameObject);
 
             Fader fader = FindObjectOfType<Fader>();
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();
+            
 
             yield return fader.FadeOut(fadeOutTime);
+
+            savingWrapper.Save();
+            
             yield return SceneManager.LoadSceneAsync(sceneToLoad);
 
+            savingWrapper.Load();
             
             Portal destinationPortal = GetDestinationPortal();
+            
             UpdatePlayer(destinationPortal);
-
+            
             yield return new WaitForSeconds(fadeWaitTime);
             yield return fader.FadeIn(fadeInTime);
             Destroy(gameObject);
@@ -55,8 +63,11 @@ namespace RPG.SceneManagement
         private void UpdatePlayer(Portal destinationPortal)
         {
             GameObject player = GameObject.FindGameObjectWithTag("Player");
-            player.GetComponent<NavMeshAgent>().Warp(destinationPortal.spawnPoint.position);
+            NavMeshAgent navMeshAgent = player.GetComponent<NavMeshAgent>();
+            navMeshAgent.enabled = false;
+            navMeshAgent.Warp(destinationPortal.spawnPoint.position);
             player.transform.rotation = destinationPortal.spawnPoint.rotation;
+            navMeshAgent.enabled = true;
         }
 
         private Portal GetDestinationPortal()
