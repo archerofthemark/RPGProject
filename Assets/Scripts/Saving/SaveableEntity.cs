@@ -57,6 +57,7 @@ namespace RPG.Saving
 
             globalLookup[property.stringValue] = this;
         }
+#endif
 
         private bool IsUnique(string candidate)
         {
@@ -70,6 +71,5 @@ namespace RPG.Saving
 
             return false;
         }
-#endif
     }
 }
