@@ -4,15 +4,17 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float speed = 1;
+    [SerializeField] float maxRange = 20;
 
     Health target = null;
     float damage = 0;
     bool targetSet = false;
+    Vector3 startPosition;
     
 
     void Start()
     {
-        
+        startPosition = transform.position;
     }
 
     void Update()
@@ -21,7 +23,11 @@ public class Projectile : MonoBehaviour
         if(!targetSet)
         {            
             transform.LookAt(GetAimLocation());
-            //targetSet = true;
+            targetSet = true;
+        }
+        if(Vector3.Distance(startPosition, transform.position) >= maxRange)
+        {
+            Destroy(gameObject);
         }
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
