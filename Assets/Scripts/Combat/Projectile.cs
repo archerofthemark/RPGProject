@@ -1,15 +1,18 @@
+using RPG.Core;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
     [SerializeField] float speed = 1;
-    [SerializeField] Transform target = null;
+
+    Health target = null;
+    float damage = 0;
     bool targetSet = false;
     
 
     void Start()
     {
-        target = GameObject.FindWithTag("Player").transform;
+        
     }
 
     void Update()
@@ -18,10 +21,16 @@ public class Projectile : MonoBehaviour
         if(!targetSet)
         {            
             transform.LookAt(GetAimLocation());
-            targetSet = true;
+            //targetSet = true;
         }
 
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
+    }
+
+    public void SetTarget(Health target, float damage)
+    {
+        this.target = target;
+        this.damage = damage;
     }
 
     private Vector3 GetAimLocation()
@@ -29,9 +38,17 @@ public class Projectile : MonoBehaviour
         CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
         if(targetCapsule == null)
         {
-            return target.position;
+            return target.transform.position;
         }
-        return target.position + Vector3.up * targetCapsule.height / 2;
+        return target.transform.position + Vector3.up * targetCapsule.height / 2;
     }
-    
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.GetComponent<Health>() == target)
+        {
+            target.TakeDamage(damage);
+        }
+        Destroy(gameObject);
+    }
 }
