@@ -5,25 +5,26 @@ public class Projectile : MonoBehaviour
 {
     [SerializeField] float speed = 1;
     [SerializeField] float maxRange = 20;
+    [SerializeField] bool isHoming = false;
 
     Health target = null;
     float damage = 0;
-    bool targetSet = false;
     Vector3 startPosition;
     
 
     void Start()
     {
         startPosition = transform.position;
+        transform.LookAt(GetAimLocation());
     }
 
     void Update()
     {
         if(target == null) { return; }
-        if(!targetSet)
-        {            
+        
+        if(isHoming && !target.IsDead())
+        {
             transform.LookAt(GetAimLocation());
-            targetSet = true;
         }
         if(Vector3.Distance(startPosition, transform.position) >= maxRange)
         {
@@ -51,6 +52,7 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(target.IsDead()) { return; }
         if(other.GetComponent<Health>() == target)
         {
             target.TakeDamage(damage);
