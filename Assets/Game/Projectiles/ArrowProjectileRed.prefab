@@ -7,6 +7,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3929331086498856227, guid: 2dc70d9442cf01f4b994657f412a341e, type: 3}
+      propertyPath: hitEffect
+      value: 
+      objectReference: {fileID: 3128300950463328517, guid: ef98ffda955f2964f9531d0670fe4aef, type: 3}
     - target: {fileID: 5611745170014595618, guid: 2dc70d9442cf01f4b994657f412a341e, type: 3}
       propertyPath: m_Parameters.colorGradient.ctime0
       value: 21627
