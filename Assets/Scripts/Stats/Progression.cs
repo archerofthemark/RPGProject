@@ -14,9 +14,10 @@ namespace RPG.Stats
         public float GetStat(Stat stat, CharacterClass characterClass, int level)
         {
             BuildLookup();
-
             float[] levels = lookupTable[characterClass][stat];
+
             if(levels.Length < level) { return 0; }
+
 
             return levels[level - 1];
         }
@@ -27,16 +28,17 @@ namespace RPG.Stats
 
             lookupTable = new Dictionary<CharacterClass, Dictionary<Stat, float[]>>();
 
-            foreach (ProgressionCharacterClass progessionClass in characterClasses)
+            foreach (ProgressionCharacterClass progressionClass in characterClasses)
             {
                 var statLookupTable = new Dictionary<Stat, float[]>();
 
-                foreach(ProgressionStat progressionStat in progessionClass.stats)
+                foreach(ProgressionStat progressionStat in progressionClass.stats)
                 {
                     statLookupTable[progressionStat.stat] = progressionStat.levels;
                 }
 
-                lookupTable[progessionClass.characterClass] = statLookupTable;
+                lookupTable[progressionClass.characterClass] = statLookupTable;
+
             }
         }
 
@@ -52,6 +54,14 @@ namespace RPG.Stats
         {
             public Stat stat;
             public float[] levels;
+        }
+
+        public int GetLevels(Stat stat, CharacterClass characterClass)
+        {
+            BuildLookup();
+
+            float[] levels = lookupTable[characterClass][stat];
+            return levels.Length;
         }
     }
 }

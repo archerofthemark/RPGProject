@@ -9,10 +9,12 @@ namespace RPG.Resources
 {
     public class Health : MonoBehaviour, ISaveable
     {
-        [SerializeField] float healthPoints = 100f;
+        [SerializeField] float regenerationPercentage = 75f;
+        float healthPoints = -1f;
         ActionScheduler actionScheduler;
         Animator animator;
         NavMeshAgent navMeshAgent;
+        BaseStats baseStats;
         bool isDead = false;
         //float playerDeathFadeOutTime = 3.0f;
 
@@ -21,11 +23,16 @@ namespace RPG.Resources
             animator = GetComponent<Animator>();
             actionScheduler = GetComponent<ActionScheduler>();
             navMeshAgent = GetComponent<NavMeshAgent>();
+            baseStats = GetComponent<BaseStats>();
         }
 
         private void Start()
         {
-            healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            baseStats.onLevelUp += RegenerateHealth;
+            if (healthPoints < 0)
+            {
+                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            }
         }
 
         public bool IsDead()
@@ -67,6 +74,12 @@ namespace RPG.Resources
             Experience experience = instigator.GetComponent<Experience>();
             if(experience == null) { return; }
             experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
+        }
+
+        private void RegenerateHealth()
+        {
+            float regenerateHealthPoints = baseStats.GetStat(Stat.Health) * (regenerationPercentage / 100);
+            healthPoints = Mathf.Max(healthPoints, regenerateHealthPoints);
         }
 
         public object CaptureState()
