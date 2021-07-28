@@ -112,8 +112,8 @@ CanvasGroup:
   m_GameObject: {fileID: 1542530568045904042}
   m_Enabled: 1
   m_Alpha: 0
-  m_Interactable: 1
-  m_BlocksRaycasts: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
 --- !u!222 &1542530568045904038
 CanvasRenderer:
@@ -165,5 +165,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efc783a424a4cda4c9468c9364c92651, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeOutTime: 3
-  fadeInTime: 1
