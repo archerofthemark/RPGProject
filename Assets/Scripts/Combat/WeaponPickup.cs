@@ -8,6 +8,7 @@ namespace RPG.Combat
     {
         [SerializeField] Weapon weapon = null;
         [SerializeField] float respawnTime = 5.0f;
+
         private void OnTriggerEnter(Collider other)
         {
             if (!other.gameObject.CompareTag("Player")) { return; }

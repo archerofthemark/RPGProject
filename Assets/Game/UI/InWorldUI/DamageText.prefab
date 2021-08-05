@@ -214,9 +214,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4567331240569405946}
-  - component: {fileID: 5146593969971601304}
-  - component: {fileID: 8070228827862271786}
   - component: {fileID: 6863997815413753093}
+  - component: {fileID: 4427717363133160804}
   m_Layer: 0
   m_Name: DamageText
   m_TagString: Untagged
@@ -239,40 +238,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &5146593969971601304
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7917245909205532409}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 25cd9df565aeb044ea7c27a2fecf8690, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &8070228827862271786
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7917245909205532409}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 1f7a6ab9ac8017f4fbfa8fbc3d141f92, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &6863997815413753093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,3 +250,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c795ff19c48ae54d801cc1e890b24c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageText: {fileID: 6043985180950388516}
+--- !u!111 &4427717363133160804
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7917245909205532409}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: df7a20922b24b8340909317e976e538e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: df7a20922b24b8340909317e976e538e, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
