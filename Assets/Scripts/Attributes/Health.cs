@@ -7,12 +7,13 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Events;
 
-namespace RPG.Resources
+namespace RPG.Attributes
 {
     public class Health : MonoBehaviour, ISaveable
     {
         [SerializeField] float regenerationPercentage = 75f;
         [SerializeField] TakeDamageEvent takeDamage;
+        [SerializeField] UnityEvent onDie;
 
         [System.Serializable]
         public class TakeDamageEvent : UnityEvent<float>
@@ -69,6 +70,7 @@ namespace RPG.Resources
             takeDamage.Invoke(damage);
             if (healthPoints.value <= 0 && !isDead)
             {
+                onDie.Invoke();
                 Die();
                 AwardExperience(instigator);
             }
@@ -76,7 +78,12 @@ namespace RPG.Resources
 
         public float GetPercentage()
         {
-            return 100 * healthPoints.value / GetComponent<BaseStats>().GetStat(Stat.Health);
+            return 100 * GetFraction();
+        }
+
+        public float GetFraction()
+        {
+            return healthPoints.value / GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
         public float GetHealthPoints()
