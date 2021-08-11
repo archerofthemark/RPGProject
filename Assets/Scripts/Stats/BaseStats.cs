@@ -50,6 +50,7 @@ namespace RPG.Stats
         private void UpdateLevel()
         {
             int newLevel = CalculateLevel();
+            
             if(newLevel > currentLevel.value)
             {
                 currentLevel.value = newLevel;
@@ -122,7 +123,7 @@ namespace RPG.Stats
 
         private void LevelUpEffect()
         {
-            Instantiate(levelUpParticleEffect, transform.parent);
+            Instantiate(levelUpParticleEffect, transform);
         }
     }
 }

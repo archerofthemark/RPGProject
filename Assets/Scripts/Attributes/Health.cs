@@ -2,6 +2,7 @@ using GameDevTV.Utils;
 using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
+using RPG.SceneManagement;
 using System;
 using UnityEngine;
 using UnityEngine.AI;
@@ -26,7 +27,7 @@ namespace RPG.Attributes
         NavMeshAgent navMeshAgent;
         BaseStats baseStats;
         bool isDead = false;
-        //float playerDeathFadeOutTime = 3.0f;
+        float playerDeathFadeOutTime = 3.0f;
 
         private void Awake()
         {
@@ -101,10 +102,10 @@ namespace RPG.Attributes
 
         public void Die()
         {
-            //if(CompareTag("Player")) { 
-            //    Fader fader = FindObjectOfType<Fader>();
-            //    StartCoroutine(fader.FadeOut(playerDeathFadeOutTime)); 
-            //}
+            if(CompareTag("Player")) { 
+                Fader fader = FindObjectOfType<Fader>();
+                fader.FadeOut(playerDeathFadeOutTime); 
+            }
             if(isDead) { return; }
             isDead = true;
             animator.SetTrigger("die");
